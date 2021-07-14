@@ -1,23 +1,25 @@
 <%= form_with url: checker_check_name_path do |form| %>
-    <div>
-        <%= form.label 'Введите имя:', {:class => 'form-check-label'} %><br>
-        <%= form.text_area :name, {:class => 'form-control'}%><br>
-        <%= form.label 'Использовать цифры?', {:class => 'form-check-label'} %><br>
-         <%= form.label :numeric, "Yes"%>
-    <%= form.radio_button :numeric, "Y" %>
+  <div class="mb-3">
+    <%= form.label 'Введите имя:', class:'form-check-label'%><br>
+    <%= form.text_field :name, placeholder: "Введите имя и фамилию на латинице и нажмите кнопку ПРОВЕРИТЬ", pattern: "^[a-zA-Z\s]+$", type: "text",
+    title:"Разрешено использовать только пробел и латинские буквы", class:'form-control'%>
+  </div>  
+  <div class='form-check'>
+    <%= form.label 'Использовать цифры?', {:class => 'form-check-label'} %><br>
+    <%= form.label :numeric, "Yes"%>
+    <%= form.radio_button :numeric, 'y'%>
     <%= form.label :numeric, "No"%>
-    <%= form.radio_button :numeric, "N" %>
-    </div>
-    <div>
-        <%= form.submit 'Проверить', {:class => 'btn btn-lg btn-primary col-md-12'}%> 
-    </div><br>
-    <div>
-    <%=print "ebat #{@generated_name}"%>
-        <h2>Результат проверки:</h2>
-        <%if !@generated_name.nil?%>
-            <ul class="list-group">
-                <li class="list-group-item"><%=@generated_name%></li>
-            </ul>
-          <%end%>
-    </div>
+    <%= form.radio_button :numeric, 'n', checked: true%>
+  </div> 
+  <div>
+    <%= form.submit 'Проверить', class: 'btn btn-lg btn-primary col-md-12'%> 
+  </div><br>
+  <div>
+    <h2>Результат проверки:</h2>
+      <%if !@generated_name.nil?%>
+        <ul class="list-group">
+        	<li class="list-group-item">Самое короткое свободное имя: <%=@generated_name%></li>
+				</ul>
+      <%end%>
+  </div>
 <% end %>

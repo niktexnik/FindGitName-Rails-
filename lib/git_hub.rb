@@ -4,8 +4,9 @@ require_relative './name_generator.rb'
 require_relative './parser.rb'
 require_relative './check.rb'
 require_relative './github_api.rb'
-class Main
+class GitHub
   def self.call(name, numeric)
+
     begin
       parsed_name = Parser.parse_name(name)
       parsed_numeric = Parser.parse_numeric(numeric)
@@ -21,8 +22,7 @@ class Main
         puts e.message
         next
       end
-      checked_name
+      return name
     end
   end
 end
-Main.new.call
