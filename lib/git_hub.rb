@@ -2,17 +2,12 @@
 
 require_relative './name_generator.rb'
 require_relative './parser.rb'
-require_relative './check.rb'
+require_relative './check_username.rb'
 require_relative './github_api.rb'
 class GitHub
   def self.call(name, numeric)
-
-    begin
-      parsed_name = Parser.parse_name(name)
-      parsed_numeric = Parser.parse_numeric(numeric)
-    rescue Parser::ParseError => e
-      puts e.message
-    end
+    parsed_name = Parser.parse_name(name)
+    parsed_numeric = Parser.parse_numeric(numeric)
 
     generated_names = NameGenerator.process(parsed_name, parsed_numeric)
     generated_names.each do |name|

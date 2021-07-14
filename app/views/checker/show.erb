@@ -1,8 +1,11 @@
 <%= form_with url: checker_check_name_path do |form| %>
   <div class="mb-3">
-    <%= form.label 'Введите имя:', class:'form-check-label'%><br>
+    <%= form.label 'Введите имя и фамилию:', class:'form-check-label'%><br>
     <%= form.text_field :name, placeholder: "Введите имя и фамилию на латинице и нажмите кнопку ПРОВЕРИТЬ", pattern: "^[a-zA-Z\s]+$", type: "text",
-    title:"Разрешено использовать только пробел и латинские буквы", class:'form-control'%>
+    title:"Разрешено использовать только пробел и латинские буквы", class:" #{error_message.present? ? "form-control is-invalid" : "form-control"}"%>
+      <div id="validationServer04Feedback" class="invalid-feedback">
+        <%=error_message%>
+    </div>
   </div>  
   <div class='form-check'>
     <%= form.label 'Использовать цифры?', {:class => 'form-check-label'} %><br>
@@ -12,7 +15,7 @@
     <%= form.radio_button :numeric, 'n', checked: true%>
   </div> 
   <div>
-    <%= form.submit 'Проверить', class: 'btn btn-lg btn-primary col-md-12'%> 
+    <%= form.submit 'Проверить', class: 'btn btn-lg btn-primary'%> 
   </div><br>
   <div>
     <h2>Результат проверки:</h2>
