@@ -1,0 +1,23 @@
+<%= form_with url: checker_check_name_path do |form| %>
+    <div>
+        <%= form.label 'Введите имя:', {:class => 'form-check-label'} %><br>
+        <%= form.text_area :name, {:class => 'form-control'}%><br>
+        <%= form.label 'Использовать цифры?', {:class => 'form-check-label'} %><br>
+         <%= form.label :numeric, "Yes"%>
+    <%= form.radio_button :numeric, "Y" %>
+    <%= form.label :numeric, "No"%>
+    <%= form.radio_button :numeric, "N" %>
+    </div>
+    <div>
+        <%= form.submit 'Проверить', {:class => 'btn btn-lg btn-primary col-md-12'}%> 
+    </div><br>
+    <div>
+    <%=print "ebat #{@generated_name}"%>
+        <h2>Результат проверки:</h2>
+        <%if !@generated_name.nil?%>
+            <ul class="list-group">
+                <li class="list-group-item"><%=@generated_name%></li>
+            </ul>
+          <%end%>
+    </div>
+<% end %>
